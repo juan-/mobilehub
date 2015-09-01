@@ -16,7 +16,7 @@ app.post('/twiml', function(req, res) {
         if (twilio.validateExpressRequest(req, '6b5698ad3a3b6340fccf563cf1824566')) {
 	        var resp = new twilio.TwimlResponse();
 	        resp.say('express sez - hello twilio!');
-
+			res.setHeader('Access-Control-Allow-Origin', '*');
 	        res.type('text/xml');
 	        res.send(resp.toString());
 	    }
@@ -25,7 +25,7 @@ app.post('/twiml', function(req, res) {
 	    }
 
         /*var twiml = new twilio.TwimlResponse();
-        //res.setHeader('Access-Control-Allow-Origin', '*');
+        //
         //res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
         //res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
         res.setHeader('content-type','text/xml');
