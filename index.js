@@ -24,7 +24,7 @@ app.post('/', function(req, response) {
 	    message = req.body.Body.toLowerCase().replace(/^\s+|\s+$/g,'');
 	    if(message == 'subscribe'){
 	    	numArray.push(req.body.From);
-	    } else if (message == 'unsubscribe'){
+	    } else if (message == 'iamout'){
 	    	var index = array.indexOf(req.body.From);
 	    	if (index > -1) {
 	    		array.splice(index, 1);
