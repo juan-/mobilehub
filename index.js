@@ -8,9 +8,9 @@ var client = new twilio.RestClient('AC1778dd02a7617de146d209cbea72b9a4', '6b5698
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-/*app.get('/', function(req, res){
+app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
-});*/
+});
 
 app.post('/', function(req, response) {
         var twiml = new twilio.TwimlResponse();
@@ -27,7 +27,7 @@ app.post('/', function(req, response) {
         res.setHeader('content-type','text/xml');*/
 
 });
-app.get('/twiml', function(req, res) {
+/*app.get('/twiml', function(req, res) {
         var twiml = new twilio.TwimlResponse();
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -39,7 +39,7 @@ app.get('/twiml', function(req, res) {
 
         res.type('text/xml');
         res.send(twiml.toString());
-});
+});*/
 
 
 io.on('connection', function(socket){
