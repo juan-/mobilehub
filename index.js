@@ -7,34 +7,11 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-/*twilio.sendSms({
-    to:'6095169870',
-    from:'6095573056',
-    body:'ahoy hoy! Testing Twilio and node.js'
-}, function(error, message) {
-    if (!error) {
-        console.log('Success! The SID for this SMS message is:');
-        console.log(message.sid);
-        console.log('Message sent on:');
-        console.log(message.dateCreated);
-    } else {
-        console.log('Oops! There was an error.');
-    }
-});*/
 
 app.post('/twiml', function(req, res) {
-        var resp = new twilio.TwimlResponse();
-        resp.say('express sez - hello twilio!');
+        console.log(req);
+});
 
-        res.type('text/xml');
-        res.send(resp.toString());
-});
-app.get('/twiml', function(req, res) {
-        var resp = new twilio.TwimlResponse();
-        resp.say('express sez - hello twilio!');
-        res.type('text/xml');
-        res.send(resp.toString());
-});
 
 io.on('connection', function(socket){
   socket.on('message', function(msg){
