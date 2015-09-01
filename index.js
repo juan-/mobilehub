@@ -15,7 +15,8 @@ app.get('/', function(req, res){
 app.post('/', function(req, response) {
         var twiml = new twilio.TwimlResponse();
 	    twiml.message('Sent!');
-	    console.log(req.body);
+	    console.log(req.body);	    
+	    console.log(req.body.Body);	    
 	    
 	    // Render the TwiML response as XML
 	    response.type('text/xml');
