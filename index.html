@@ -16,19 +16,26 @@
   <body>
     <ul id="messages"></ul>
     <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
+      <input id="m" autocomplete="off" placeholder="Type your message, or change your name by typing 'user: [nickname]'" /><button>Send</button>
     </form>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       var socket = io();
+      var user = "web user";
+      var str;
       $('form').submit(function(){
-        socket.emit('message', {from:"web user", message: $('#m').val()});
+        str = $('#m').val().split(" ");
+        if(str[0].toLowerCase() == 'user:'){
+          user = str[1];
+        } else {
+          socket.emit('message', {from:user, message: $('#m').val()});
+        }
         $('#m').val('');
         return false;
       });
       socket.on('message', function(msg){
-        $('#messages').append($('<li>').text(msg.from+":"+msg.message));
+        $('#messages').append($('<li>').text(msg.from+": "+msg.message));
       });
     </script>
   </body>
