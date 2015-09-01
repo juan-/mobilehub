@@ -1,28 +1,39 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var client = require('twilio')('AC2b5e8aa4e79fa1cb79bc1fed04c5a926', '253d025879c7aa207751243448bf8f4c');
-
-app.configure(function () {
-    /* Configure your express app... */
-    app.use(express.urlencoded());
-});
+var twilio = require('twilio')('AC1778dd02a7617de146d209cbea72b9a4', '6b5698ad3a3b6340fccf563cf1824566');
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
+/*twilio.sendSms({
+    to:'6095169870',
+    from:'6095573056',
+    body:'ahoy hoy! Testing Twilio and node.js'
+}, function(error, message) {
+    if (!error) {
+        console.log('Success! The SID for this SMS message is:');
+        console.log(message.sid);
+        console.log('Message sent on:');
+        console.log(message.dateCreated);
+    } else {
+        console.log('Oops! There was an error.');
+    }
+});*/
+
 app.post('/twiml', function(req, res) {
-    if (twilio.validateExpressRequest(req, '253d025879c7aa207751243448bf8f4c')) {
         var resp = new twilio.TwimlResponse();
         resp.say('express sez - hello twilio!');
 
         res.type('text/xml');
         res.send(resp.toString());
-    }
-    else {
-        res.send('you are not twilio.  Buzz off.');
-    }
+});
+app.get('/twiml', function(req, res) {
+        var resp = new twilio.TwimlResponse();
+        resp.say('express sez - hello twilio!');
+        res.type('text/xml');
+        res.send(resp.toString());
 });
 
 io.on('connection', function(socket){
