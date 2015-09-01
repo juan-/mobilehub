@@ -14,14 +14,13 @@ app.get('/', function(req, res){
 app.post('/twiml', function(req, res) {
         var twiml = new twilio.TwimlResponse();
         res.setHeader('Access-Control-Allow-Origin', '*');
-        //res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-        //res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
         twiml.message('Hi!  Thanks for checking out my app!');
 
         res.type('text/xml');
         res.send(twiml.toString());
-        console.log(req['Body']);
 });
 app.get('/twiml', function(req, res) {
         var twiml = new twilio.TwimlResponse();
@@ -30,7 +29,6 @@ app.get('/twiml', function(req, res) {
 
         res.type('text/xml');
         res.send(twiml.toString());
-        console.log(req['Body']);
 });
 
 
