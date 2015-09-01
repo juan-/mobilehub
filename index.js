@@ -19,7 +19,7 @@ app.post('/twiml', function(req, res) {
         res.type('text/xml');
         res.send(twiml.toString());
 });
-app.get('/twiml', function(req, res) {
+/*app.get('/twiml', function(req, res) {
         console.log(req);
         console.log(req.Body);
         var twiml = new twilio.TwimlResponse();
@@ -28,7 +28,7 @@ app.get('/twiml', function(req, res) {
 
         res.type('text/xml');
         res.send(twiml.toString());
-});
+});*/
 
 
 io.on('connection', function(socket){
