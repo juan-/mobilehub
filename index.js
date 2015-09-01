@@ -10,25 +10,23 @@ app.get('/', function(req, res){
 
 
 app.post('/twiml', function(req, res) {
-        console.log(req);
-        console.log(req.Body);
         var twiml = new twilio.TwimlResponse();
 
         twiml.say('Hi!  Thanks for checking out my app!');
 
         res.type('text/xml');
         res.send(twiml.toString());
+        console.log(req['Body']);
 });
-/*app.get('/twiml', function(req, res) {
-        console.log(req);
-        console.log(req.Body);
+app.get('/twiml', function(req, res) {
         var twiml = new twilio.TwimlResponse();
 
         twiml.say('Hi!  Thanks for checking out my app!');
 
         res.type('text/xml');
         res.send(twiml.toString());
-});*/
+        console.log(req['Body']);
+});
 
 
 io.on('connection', function(socket){
