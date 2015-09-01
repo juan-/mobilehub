@@ -6,7 +6,6 @@ var bodyParser = require('body-parser');
 var client = new twilio.RestClient('AC1778dd02a7617de146d209cbea72b9a4', '6b5698ad3a3b6340fccf563cf1824566');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(allowCrossDomain);
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
@@ -14,9 +13,10 @@ app.get('/', function(req, res){
 
 app.post('/twiml', function(req, res) {
         var twiml = new twilio.TwimlResponse();
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+        //res.setHeader('Access-Control-Allow-Origin', '*');
+        //res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+        //res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+        res.setHeader('content-type','text/xml');
 
         twiml.message('Hi!  Thanks for checking out my app!');
 
@@ -25,6 +25,11 @@ app.post('/twiml', function(req, res) {
 });
 app.get('/twiml', function(req, res) {
         var twiml = new twilio.TwimlResponse();
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+        res.setHeader('content-type','text/xml');
+
 
         twiml.message('Hi!  Thanks for checking out my app!');
 
