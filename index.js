@@ -14,32 +14,14 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, response) {
         var twiml = new twilio.TwimlResponse();
-	    twiml.message('Hello from node.js!');
+	    twiml.message('Sent!');
+	    console.log(req.body);
 	    
 	    // Render the TwiML response as XML
 	    response.type('text/xml');
 	    response.send(twiml.toString());
 
-        /*var twiml = new twilio.TwimlResponse();
-        //
-        //res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-        //res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-        res.setHeader('content-type','text/xml');*/
-
 });
-/*app.get('/twiml', function(req, res) {
-        var twiml = new twilio.TwimlResponse();
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-        res.setHeader('content-type','text/xml');
-
-
-        twiml.message('Hi!  Thanks for checking out my app!');
-
-        res.type('text/xml');
-        res.send(twiml.toString());
-});*/
 
 
 io.on('connection', function(socket){
