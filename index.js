@@ -8,11 +8,11 @@ var client = new twilio.RestClient('AC1778dd02a7617de146d209cbea72b9a4', '6b5698
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', function(req, res){
+/*app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
-});
+});*/
 
-app.post('/twiml', function(req, response) {
+app.post('/', function(req, response) {
         var twiml = new twilio.TwimlResponse();
 	    twiml.message('Hello from node.js!');
 	    
