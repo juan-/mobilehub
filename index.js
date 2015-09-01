@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var client = new twilio.RestClient('AC1778dd02a7617de146d209cbea72b9a4', '6b5698ad3a3b6340fccf563cf1824566');
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(allowCrossDomain);
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
