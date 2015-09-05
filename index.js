@@ -21,7 +21,7 @@ app.post('/', function(req, response) {
 	    // Render the TwiML response as XML
 	    response.send(twiml.toString());
 	    
-	    message = req.body.Body.toLowerCase().replace(/^\s+|\s+$/g,'');
+	    message = req.body.Body.toLowerCase().replace(" ","");
 	    if(message == 'subscribe'){
 	    	numArray.push(req.body.From);
 	    } else if (message == 'un-subscribe'){
