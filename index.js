@@ -21,13 +21,13 @@ app.post('/', function(req, response) {
 	    // Render the TwiML response as XML
 	    response.send(twiml.toString());
 	    
-	    message = req.body.Body.toLowerCase().replace(" ","");
+	    message = req.body.Body.toLowerCase().replace(/^\s+|\s+$/g,'');
 	    if(message == 'subscribe'){
 	    	numArray.push(req.body.From);
 	    } else if (message == 'un-subscribe'){
-	    	var index = array.indexOf(req.body.From);
+	    	var index = numArray.indexOf(req.body.From);
 	    	if (index > -1) {
-	    		array.splice(index, 1);
+	    		numArray.splice(index, 1);
 	    	};
 	    } else {
 	 	    io.emit('message', {from: req.body.From, message:req.body.Body});	    
