@@ -4,7 +4,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var twilio = require('twilio');
 var bodyParser = require('body-parser');
-var client = new twilio.RestClient('AC1778dd02a7617de146d209cbea72b9a4', '6b5698ad3a3b6340fccf563cf1824566');
+var client = new twilio.RestClient('secret1', 'secret2');
 
 var numArray = [];
 
